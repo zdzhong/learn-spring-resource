@@ -18,6 +18,13 @@ public class BeanDefinition {
     private static final String SCOPE_PROTOTYPE = "prototype";
 
     private List<PropertyValue> propertyValues = new ArrayList<>();
+    private Class<?> clazzType;
+
+    public BeanDefinition(String clazzName, String beanName, Class<?> clazzType) {
+        this.clazzName = clazzName;
+        this.beanName = beanName;
+        this.clazzType = clazzType;
+    }
 
     public String getClazzName() {
         return clazzName;
@@ -73,5 +80,17 @@ public class BeanDefinition {
 
     public boolean isProtoType() {
         return SCOPE_PROTOTYPE.equals(scope);
+    }
+
+    public void addPropertyValue(PropertyValue pv) {
+        propertyValues.add(pv);
+    }
+
+    public Class<?> getClazzType() {
+        return clazzType;
+    }
+
+    public void setClazzType(Class<?> clazzType) {
+        this.clazzType = clazzType;
     }
 }

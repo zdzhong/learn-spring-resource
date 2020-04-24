@@ -1,14 +1,18 @@
 package ioc;
 
+import strategy.TypeRegister;
+
 public class TypedStringValue {
     // value属性值
     private String value;
     // value属性值对应的真正类型
     private Class<?> targetType;
 
-    public TypedStringValue(String value, Class<?> targetType) {
+    private TypeRegister typeRegister;
+
+    public TypedStringValue(String value) {
         this.value = value;
-        this.targetType = targetType;
+        this.typeRegister = new TypeRegister();
     }
 
     public String getValue() {
@@ -25,5 +29,9 @@ public class TypedStringValue {
 
     public void setTargetType(Class<?> targetType) {
         this.targetType = targetType;
+    }
+
+    public TypeRegister getTypeRegister() {
+        return typeRegister;
     }
 }
