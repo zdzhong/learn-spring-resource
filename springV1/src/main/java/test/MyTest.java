@@ -18,6 +18,7 @@ import strategy.TypeRegister;
 import java.io.InputStream;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -118,9 +119,7 @@ public class MyTest {
             return;
         }
 
-        /**
-         * PropertyValue就封装着一个property标签的信息
-         */
+         // PropertyValue就封装着一个property标签的信息
         PropertyValue pv = null;
 
         if (value != null && !value.equals("")) {
@@ -170,7 +169,7 @@ public class MyTest {
 
     @Test
     public void test() {
-        BlogService blogService = (BlogService) getBean("BlogService");
+        BlogService blogService = (BlogService) getBean("blogService");
         Blog blog = new Blog();
         blog.setId(101);
         System.out.println(blogService.queryBlog(blog));
@@ -216,7 +215,19 @@ public class MyTest {
     private void initMethod(Object bean, BeanDefinition beanDefinition) {
         // todo 判断bean是否实现了Aware接口
 
-        // todo 判断是否实现了InitilizingBean，如果实现了
+        // todo 判断是否实现了InitializingBean，如果实现了
+
+        // 指定了init-method 属性
+        String initMethod = beanDefinition.getInitMethod();
+        if (null != initMethod) {
+            Class<?> clazz = bean.getClass();
+            try {
+                Method method = clazz.getMethod(initMethod);
+                method.invoke(bean);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     private void populateBean(Object bean, BeanDefinition beanDefinition) {
@@ -260,6 +271,4 @@ public class MyTest {
         }
         return null;
     }
-
-
 }

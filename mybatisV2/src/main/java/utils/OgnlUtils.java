@@ -36,10 +36,7 @@ public class OgnlUtils {
 	 * @return
 	 */
 	public static boolean evaluateBoolean(String expression, Object parameterObject) {
-		System.out.println(expression);
-		System.out.println(parameterObject);
 		Object value = OgnlUtils.getValue(expression, parameterObject);
-		System.out.println(value);
 		if (value instanceof Boolean) {
 			return (Boolean) value;
 		}
