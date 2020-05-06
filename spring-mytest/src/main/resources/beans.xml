@@ -1,0 +1,8 @@
+<beans>
+    <bean id="blogService" class="service.impl.BlogServiceImpl">
+        <property name="blogDao" ref="blogDao" />
+    </bean>
+
+    <bean id="blogDao" class="dao.impl.BlogDaoImpl" init-method="init" scope="singleton">
+    </bean>
+</beans>

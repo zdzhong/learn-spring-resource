@@ -11,6 +11,7 @@
     <modules>
         <module>spring-mytest</module>
         <module>springV1</module>
+        <module>springV2</module>
     </modules>
 
 

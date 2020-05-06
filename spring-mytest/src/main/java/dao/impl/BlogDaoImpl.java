@@ -18,4 +18,8 @@ public class BlogDaoImpl implements BlogDao {
         SqlSession sqlSession = sqlSessionFactory.openSession();
         return sqlSession.selectOne("mapper.selectBlog", blog);
     }
+
+    public void init() {
+        System.out.println("invoke init method!");
+    }
 }
